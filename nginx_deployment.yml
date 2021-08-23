@@ -29,7 +29,7 @@ spec:
           image: ash92/repo_achraf_chourabi:nginx
           name: nginx
           ports:
-            - containerPort: 80
+            - containerPort: 81
           resources: {}
       restartPolicy: Always
 status: {}
