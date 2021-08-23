@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: phpmyad
+  name: phpmyad
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: phpmyad
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/backend: "true"
+        io.kompose.service: phpmyad
+    spec:
+      containers:
+        - env:
+            - name: PMA_HOST
+              value: db
+            - name: PMA_USER
+              value: root
+            - name: PMA_PASSWORD
+              value: root
+          image: ash92/repo_achraf_chourabi:phpmyadmin
+          name: phpmyad
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
